@@ -16,6 +16,23 @@ Route::get('/', function()
 	return View::make('index');
 });
 
+Route::get('/classes', function() 
+{
+    echo Paste\Pre::render(get_declared_classes(),'');
+});
+
+
+// User (Explicit)
+Route::get('/signup', 'UserController@getSignup');
+Route::get('/login', 'UserController@getLogin');
+Route::post('/signup', 'UserController@postSignup');
+Route::post('/login', 'UserController@postLogin');
+Route::get('/logout', 'UserController@getLogout');
+
+// Game (Explicit)
+
+
+
 
 Route::get('/practice-creating', function() {
     $game = new Game();
@@ -87,3 +104,5 @@ Route::get('mysql-test', function() {
     echo Pre::render($results);
 
 });
+
+Route::controller('debug', 'DebugController');
