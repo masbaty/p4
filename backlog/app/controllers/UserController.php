@@ -55,7 +55,9 @@ class UserController extends BaseController {
 
 		Auth::login($user);
 
+		/*
 		$user->sendWelcomeEmail();
+		*/
 
 		return Redirect::to('/')->with('flash_message', 'Welcome to your collection!');
 
