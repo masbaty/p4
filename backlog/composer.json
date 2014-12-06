@@ -37,7 +37,6 @@
 	"require": {
 		"laravel/framework": "4.*",
         "paste/pre": "dev-master",
-        "barryvdh/laravel-debugbar": "1.8.*@dev",
         "guzzlehttp/guzzle": "~4.0"
     }
 }
