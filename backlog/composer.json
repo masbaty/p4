@@ -38,6 +38,5 @@
 		"laravel/framework": "4.*",
         "paste/pre": "dev-master",
         "guzzlehttp/guzzle": "~4.0",
-        "badcow/lorem-ipsum": "dev-master"
     }
 }
