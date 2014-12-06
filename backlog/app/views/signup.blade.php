@@ -24,7 +24,7 @@
 	{{ Form::text('email') }}
 <br />
 	{{ Form::label('Password') }}
-	{{ Form::text('password') }}
+	{{ Form::password('password') }}
 	<small>Minimum 6 characters</small>
 <br />
 	{{ Form::submit('Submit') }}

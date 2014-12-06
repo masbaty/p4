@@ -14,7 +14,28 @@
 </head>
 <body>
 
+	@if(Session::get('flash_message'))
+		<div class='flash-message'>{{ Session::get('flash_message') }}</div>
+	@endif
+
+	<nav>
+		<ul>
+			@if(Auth::check())
+				<li><a href='/logout'>Log Out {{ Auth::user()->email; }}</a></li>
+				<li><a href='/game'>All Games</a></li>
+				<li><a href='/game/search'>Search Games</a></li>
+				<li><a href='/tag'>All Tags</a></li>
+				<li><a href='/game/create'>Add New Game</a></li>
+				<li><a href='/debug/routes'>Routes</a></li>
+			@else
+				<li><a href='/signup'>Sign up</a> or <a href='/login'>Log In</a></li>
+			@endif
+		</ul>
+	</nav>
+
 	@yield("content")
+
+	<a href='https://github.com/masbaty/p4/tree/master/backlog'>Github</a>
 
 </body>
 </html>

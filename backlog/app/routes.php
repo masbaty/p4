@@ -106,3 +106,5 @@ Route::get('mysql-test', function() {
 });
 
 Route::controller('debug', 'DebugController');
+Route::controller('test', 'TestController');
+Route::controller('tag', 'TagController');
