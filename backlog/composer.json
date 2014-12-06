@@ -37,6 +37,6 @@
 	"require": {
 		"laravel/framework": "4.*",
         "paste/pre": "dev-master",
-        "guzzlehttp/guzzle": "~4.0",
+        "guzzlehttp/guzzle": "~4.0"
     }
 }
