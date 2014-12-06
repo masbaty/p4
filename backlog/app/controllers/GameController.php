@@ -3,7 +3,7 @@
 class GameController extends \BaseController {
 
 	public function __construct() {
-		parent__construct();
+		parent::__construct();
 
 		$this->beforeFilter('auth');
 	}
@@ -21,6 +21,20 @@ class GameController extends \BaseController {
 				->with('games', $games)
 				->with('query', $query);
 		}
+	}
+
+	public function getDigest() {
+		$games = Game::getGamesAddedInTheLast24Hours();
+
+		$users = User::all();
+
+		$recipients = Game::sendDigests($users, $games);
+
+		$results = 'Game digest sent to: '.$recipients;
+
+		Log::info($results);
+
+		return $results;
 	}
 
 }

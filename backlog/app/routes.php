@@ -30,7 +30,20 @@ Route::post('/login', 'UserController@postLogin');
 Route::get('/logout', 'UserController@getLogout');
 
 // Game (Explicit)
+Route::get('/game', 'GameController@getIndex');
 
+Route::get('/game/edit/{id}', 'GameController@getEdit');
+Route::post('/game/edit', 'GameController@postEdit');
+
+Route::get('/game/create', 'GameController@getCreate');
+Route::post('/game/create', 'GameController@postCreate');
+
+Route::post('/game/delete', 'GameController@postDelete');
+
+Route::get('/game/digest', 'GameController@getDigest');
+
+Route::get('/game/search', 'GameController@getSearch');
+Route::post('/game/search', 'GameController@postSearch');
 
 
 
