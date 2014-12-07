@@ -14,10 +14,10 @@ class GameController extends \BaseController {
 	public function getIndex() {
 		$format = Input::get('format', 'html');
 		$query = Input::get('query');
-		$games = Game::search($query);
+		$games = Game::all();
 
 		if($format == 'html') {
-			return View::make('game_index')
+			return View::make('games-list')
 				->with('games', $games)
 				->with('query', $query);
 		}
@@ -35,6 +35,32 @@ class GameController extends \BaseController {
 		Log::info($results);
 
 		return $results;
+	}
+
+	/**
+	*@return View
+	*/
+	public function getSearch() {
+		return View::make('search');
+	}
+
+	/**
+	*@return View
+	*/
+	public function getCreate() {
+		return View::make('add');
+	}
+
+	/**
+	*@return Redirect
+	*/
+	public function postCreate() {
+		$game = new Game();
+
+		$game->fill(Input::all());
+		$game->save();
+
+		return Redirect::action('GameController@getIndex')->with('flash_message','Your game has been added.');
 	}
 
 }
