@@ -8,7 +8,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	public function games() {
-		return $this->belongsToMany('Game');
+		return $this->belongsToMany('Game')->withPivot('status','progress','currently_playing','rating','notes');
 	}
 
 	use UserTrait, RemindableTrait;
