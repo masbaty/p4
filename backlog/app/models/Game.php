@@ -2,6 +2,10 @@
 
 class Game extends Eloquent {
 	
+    public function users() {
+        return $this->belongsToMany('User');
+    }
+
 	protected $guarded = array('id', 'created_at', 'updated_at');
 
 	/**

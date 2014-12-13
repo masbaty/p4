@@ -7,6 +7,10 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
+	public function games() {
+		return $this->belongsToMany('Game');
+	}
+
 	use UserTrait, RemindableTrait;
 
 	/**

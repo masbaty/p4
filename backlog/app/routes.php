@@ -16,6 +16,7 @@ Route::get('/', function()
 	return View::make('index');
 });
 
+
 Route::get('/classes', function() 
 {
     echo Paste\Pre::render(get_declared_classes(),'');

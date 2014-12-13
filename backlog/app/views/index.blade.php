@@ -21,6 +21,5 @@
 
 	{{ Form::close() }}
 
-	
-
 @stop
+

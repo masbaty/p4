@@ -16,9 +16,18 @@ class CreateGameUserTable extends Migration {
 			$table->increments('relationship_id');
 			$table->timestamps();
 
+			// Create foreign keys
 			$table->integer('game_id')->unsigned();
 			$table->integer('user_id')->unsigned();
 
+			// Other fields
+			$table->string('status');
+			$table->string('progress');
+			$table->string('currently_playing');
+			$table->float('rating');
+			$table->text('notes');
+
+			// Define foreign keys
 			$table->foreign('game_id')->references('id')->on('games');
 			$table->foreign('user_id')->references('id')->on('users');
 		});

@@ -56,9 +56,13 @@ class GameController extends \BaseController {
 	*/
 	public function postCreate() {
 		$game = new Game();
+		$user = Auth::user()->get();
 
-		$game->fill(Input::all());
+		$game->fill(Input::except('status','progress','currently_playing','rating','notes'));
 		$game->save();
+
+		$game->users()->attach($user);
+		$user->fill(Input::except('title','franchise','genre','platform'));
 
 		return Redirect::action('GameController@getIndex')->with('flash_message','Your game has been added.');
 	}
