@@ -6,6 +6,16 @@ class Game extends Eloquent {
         return $this->belongsToMany('User')->withPivot('status','progress','currently_playing','rating','notes');
     }
 
+
+    public static function getPivotData($query) {
+        $user = User::find(1);
+
+        foreach ($user->games as $game)
+        {
+            return $game->pivot->$query;
+        }
+    }
+
 	protected $guarded = array('id', 'created_at', 'updated_at');
 
 	/**
@@ -54,5 +64,7 @@ class Game extends Eloquent {
 
     	return $recipients;
     }
+
+
 
 }

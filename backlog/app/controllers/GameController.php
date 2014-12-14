@@ -15,11 +15,13 @@ class GameController extends \BaseController {
 		$format = Input::get('format', 'html');
 		$query = Input::get('query');
 		$games = Game::all();
+		$user = Auth::user();
 
 		if($format == 'html') {
 			return View::make('games-list')
 				->with('games', $games)
-				->with('query', $query);
+				->with('query', $query)
+				->with('user', $user);
 		}
 	}
 
@@ -61,13 +63,19 @@ class GameController extends \BaseController {
 		$game->fill(Input::except('status','progress','currently_playing','rating','notes','_token'));
 		$game->save();
 
-		$game->users()->attach($user);
-		//$user->fill(Input::except('title','franchise','genre','platform','_token'));
+		/*$game->users()->attach($user, array(
+			'status' => Input::get('status'),
+			'progress' => Input::get('progress'),
+			'currently_playing' => Input::get('currently_playing'),
+			'rating' => Input::get('rating'),
+			'notes' => Input::get('notes')
+			));*/
 		$game->users()->sync([$user->id => ['status' => Input::get('status'),
 			'progress' => Input::get('progress'),
 			'currently_playing' => Input::get('currently_playing'),
 			'rating' => Input::get('rating'),
-			'notes' => Input::get('notes')] ], false);
+			'notes' => Input::get('notes')
+			] ], false);
 
 		return Redirect::action('GameController@getIndex')->with('flash_message','Your game has been added.');
 	}

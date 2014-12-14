@@ -18,6 +18,19 @@
 	@foreach($games as $game)
 		<section class='game'>
 			<h2>{{ $game['title'] }}</h2>
+			<ul>
+				<li>Title: {{ $game['title'] }}</li>
+				<li>Franchise: {{ $game['franchise'] }}</li>
+				<li>Genre: {{ $game['genre'] }}</li>
+
+				<li>Status: {{ Game::getPivotData('status'); }}</li>
+				<li>Progress: {{ Game::getPivotData('progress'); }}</li>
+				<li>Currently Playing? {{ Game::getPivotData('currently_playing'); }}</li>
+				<li>Rating: {{ Game::getPivotData('rating'); }}</li>
+				<li>Additional Notes: {{ Game::getPivotData('notes'); }}</li>
+				<li>Additional Notes: {{ $game->pivot['notes'] }}</li>
+				
+			</ul>
 
 			<p>
 				<a href='/game/edit/{{$game['id']}}'>Edit</a>

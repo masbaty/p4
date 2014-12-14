@@ -25,6 +25,8 @@ class UserController extends BaseController {
 
 		// Rules
 		$rules = array(
+				'first_name' => '',
+				'last_name' => '',
 				'email' => 'required|email|unique:users,email',
 				'password' => 'required|min:6'
 			);
@@ -41,6 +43,8 @@ class UserController extends BaseController {
 		}
 
 		$user = new User;
+		$user->first_name = Input::get('first_name');
+		$user->last_name = Input::get('last_name');
 		$user->email = Input::get('email');
 		$user->password = Hash::make(Input::get('password'));
 
