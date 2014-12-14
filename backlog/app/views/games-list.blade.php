@@ -23,12 +23,11 @@
 				<li>Franchise: {{ $game['franchise'] }}</li>
 				<li>Genre: {{ $game['genre'] }}</li>
 
-				<li>Status: {{ Game::getPivotData('status'); }}</li>
-				<li>Progress: {{ Game::getPivotData('progress'); }}</li>
-				<li>Currently Playing? {{ Game::getPivotData('currently_playing'); }}</li>
-				<li>Rating: {{ Game::getPivotData('rating'); }}</li>
-				<li>Additional Notes: {{ Game::getPivotData('notes'); }}</li>
-				<li>Additional Notes: {{ $game->pivot['notes'] }}</li>
+				<li>Status: {{ $game->users()->first()->pivot->status }}</li>
+				<li>Progress: {{ $game->users()->first()->pivot->progress }}</li>
+				<li>Currently Playing? {{ $game->users()->first()->pivot->currently_playing }}</li>
+				<li>Rating: {{ $game->users()->first()->pivot->rating }}</li>
+				<li>Additional Notes: {{ $game->users()->first()->pivot->notes }}</li>
 				
 			</ul>
 

@@ -80,4 +80,60 @@ class GameController extends \BaseController {
 		return Redirect::action('GameController@getIndex')->with('flash_message','Your game has been added.');
 	}
 
+	/**
+	*@return View
+	*/
+	public function getEdit($id) {
+		try {
+			$game = Game::findOrFail($id);
+		}
+		catch(exception $e) {
+			return Redirect::to('/game')->with('flash_message', 'Game not found');
+		}
+
+		return View::make('edit')
+			->with('game', $game);
+	}
+
+	/**
+	*@return Redirect
+	*/
+	public function postEdit() {
+		try {
+			$game = Game::findOrFail(Input::get('id'));
+		}
+		catch(exception $e) {
+			return Redirect::to('/game')->with('flash_message', 'Game not found');
+		}
+
+		try {
+			$game->fill(Input::all());
+			$game->save();
+
+			return Redirect::action('GameController@getIndex')
+				->with('flash_message', 'Your changes have been saved.');
+		}
+		catch(exception $e) {
+			return Redirect::to('/game')->with('flash_message', 'Error saving changes');
+		}
+
+	}
+
+	/**
+	*@return Redirect
+	*/
+	public function postDelete() {
+		try {
+			$game = Game::findOrFail(Input::get('id'));
+		}
+		catch(exception $e) {
+			return Redirect::to('/game/')->with('flash_message', 'Could not delete game - not found.');
+		}
+
+		$game->users()->detach(Input::get('id'));
+		Game::destroy(Input::get('id'));
+
+		return Redirect::to('/game/')->with('flash_message', 'Game deleted.');
+	}
+
 }
