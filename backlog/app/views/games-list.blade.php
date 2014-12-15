@@ -15,7 +15,7 @@
 @if(sizeof($games) == 0)
 	No results
 @else
-	@foreach($games as $game)
+	@foreach($user->games as $game)
 		<section class='game'>
 			<h2>{{ $game['title'] }}</h2>
 			<ul>
