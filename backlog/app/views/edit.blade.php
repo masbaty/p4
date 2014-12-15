@@ -10,7 +10,6 @@
 
 {{ Form::open(array('url' => '/game/edit')) }}
 	{{ Form::hidden('id',$game['id']); }}
-	{{ Form::hidden('id',$game->users()->first()->pivot)}}
 
 	<div>
 		{{ Form::label('title','Title') }}

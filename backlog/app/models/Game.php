@@ -6,9 +6,7 @@ class Game extends Eloquent {
         return $this->belongsToMany('User')->withPivot('status','progress','currently_playing','rating','notes');
     }
 
-    public function relationship() {
-        
-    }
+    
 
 
     public static function pivotData($query) {

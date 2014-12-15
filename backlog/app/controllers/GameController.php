@@ -107,8 +107,9 @@ class GameController extends \BaseController {
 		}
 
 		try {
-			$game->fill(Input::all());
+			$game->fill(Input::except('note'));
 			$game->save();
+			// Update existing pivot here
 
 			return Redirect::action('GameController@getIndex')
 				->with('flash_message', 'Your changes have been saved.');
