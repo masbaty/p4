@@ -13,30 +13,31 @@
 
 </head>
 <body>
+	<div class="content">
 
-	@if(Session::get('flash_message'))
-		<div class='flash-message'>{{ Session::get('flash_message') }}</div>
-	@endif
+		@if(Session::get('flash_message'))
+			<div class='flash-message'>{{ Session::get('flash_message') }}</div>
+		@endif
 
 
-	@yield("content")
+		<nav>
+			<ul>
+				@if(Auth::check())
+					<li><a href='/'>Home</a></li>
+					<li><a href='/game'>All Games</a></li>
+					<li><a href='/game/create'>Add New Game</a></li>
+					<li><a href='/logout'>Log Out {{ Auth::user()->email; }}</a></li>
+				@else
+					<li><a href='/signup'>Sign up</a> or <a href='/login'>Log In</a></li>
+				@endif
+			</ul>
+		</nav>
 
-	<nav>
-		<ul>
-			@if(Auth::check())
-				<li><a href='/logout'>Log Out {{ Auth::user()->email; }}</a></li>
-				<li><a href='/'>Home</a></li>
-				<li><a href='/game'>All Games</a></li>
-				<li><a href='/game/search'>Search Games</a></li>
-				<li><a href='/game/create'>Add New Game</a></li>
-			@else
-				<li><a href='/signup'>Sign up</a> or <a href='/login'>Log In</a></li>
-			@endif
-		</ul>
-	</nav>
+		@yield("content")
 
-	<br />
-	<a href='https://github.com/masbaty/p4/tree/master/backlog'>Github</a>
+		<br />
+		<a href='https://github.com/masbaty/p4/tree/master/backlog'>Github</a>
 
+	</div>
 </body>
 </html>
