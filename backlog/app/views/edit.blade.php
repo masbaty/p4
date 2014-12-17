@@ -24,8 +24,8 @@
 		{{ Form::text('genre',$game['genre']); }}
 	</div>
 	<div>
-		{{ Form::label('note','Note') }}
-		{{ Form::text('note',$game->users()->first()->pivot->notes); }}
+		{{ Form::label('notes','Notes') }}
+		{{ Form::text('notes',$game->users()->first()->pivot->notes); }}
 	</div>
 	
 
