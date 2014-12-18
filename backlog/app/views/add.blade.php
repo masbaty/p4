@@ -32,9 +32,6 @@
 	{{ Form::label('Currently Playing?') }}
 	{{ Form::text('currently_playing') }}
 <br />
-	{{ Form::label('Flags') }}
-	{{ Form::text('flags') }}
-<br />
 	{{ Form::label('Rating') }}
 	{{ Form::text('rating') }}
 <br />

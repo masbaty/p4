@@ -1,9 +1,27 @@
 body {
-	background-color: #FFFFFF;
+	background-color: #654321;
+	width: 80%;
+	margin-left: 10%;
 }
 
 .content {
 	margin: 25px;
 	padding: 10px;
-	background-color: #BAD455;
+	background-color: #d4d8d1;
+}
+
+nav {
+	text-align: center;
+}
+nav ul li {
+	display: inline;
+}
+
+a:link,a:visited {
+    color: #0000A0;
+}
+a:hover {
+    background-color: #0000FF;
+    color: #FFFFFF;
+    text-decoration: none;
 }

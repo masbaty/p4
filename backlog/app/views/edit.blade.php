@@ -24,8 +24,24 @@
 		{{ Form::text('genre',$game['genre']); }}
 	</div>
 	<div>
-		{{ Form::label('notes','Notes') }}
-		{{ Form::text('notes',$game->users()->first()->pivot->notes); }}
+		{{ Form::label('status','Status') }}
+		{{ Form::text('status',$game->users()->first()->pivot->status); }}
+	</div>
+	<div>
+		{{ Form::label('progress','Progress') }}
+		{{ Form::text('progress',$game->users()->first()->pivot->progress); }}
+	</div>
+	<div>
+		{{ Form::label('currently_playing','Currently playing?') }}
+		{{ Form::text('currently_playing',$game->users()->first()->pivot->currently_playing); }}
+	</div>
+	<div>
+		{{ Form::label('rating','Rating') }}
+		{{ Form::text('rating',$game->users()->first()->pivot->rating); }}
+	</div>
+	<div>
+		{{ Form::label('notes','Notes') }}<br />
+		{{ Form::textarea('notes',$game->users()->first()->pivot->notes,['size' => '50x5']); }}
 	</div>
 	
 

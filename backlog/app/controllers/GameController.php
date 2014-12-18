@@ -63,13 +63,7 @@ class GameController extends \BaseController {
 		$game->fill(Input::except('status','progress','currently_playing','rating','notes','_token'));
 		$game->save();
 
-		/*$game->users()->attach($user, array(
-			'status' => Input::get('status'),
-			'progress' => Input::get('progress'),
-			'currently_playing' => Input::get('currently_playing'),
-			'rating' => Input::get('rating'),
-			'notes' => Input::get('notes')
-			));*/
+		
 		$game->users()->sync([$user->id => ['status' => Input::get('status'),
 			'progress' => Input::get('progress'),
 			'currently_playing' => Input::get('currently_playing'),
@@ -109,18 +103,21 @@ class GameController extends \BaseController {
 		try {
 			$game->fill(Input::except('notes'));
 			$game->save();
-			// Update existing pivot here
+			
 			$user = Auth::user();
 			$game_user = $game->users->find($user->id);
-			$game->users->find($user->id)->pivot->notes = Input::get('notes');
+			$game_user->pivot->status = Input::get('status');
+			$game_user->pivot->progress = Input::get('progress');
+			$game_user->pivot->currently_playing = Input::get('currently_playing');
+			$game_user->pivot->rating = Input::get('rating');
+			$game_user->pivot->notes = Input::get('notes');
 			$game_user->pivot->save();
 
 			return Redirect::action('GameController@getIndex')
 				->with('flash_message', 'Your changes have been saved.');
 		}
 		catch(exception $e) {
-			Debugbar::addException($e);
-			return Redirect::to('/game')->with('flash_message', 'Error saving changes. Your error message is: '.$e);
+			return Redirect::to('/game')->with('flash_message', 'Error saving changes.');
 		}
 
 	}
