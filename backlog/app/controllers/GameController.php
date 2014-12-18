@@ -110,7 +110,10 @@ class GameController extends \BaseController {
 			$game->fill(Input::except('notes'));
 			$game->save();
 			// Update existing pivot here
-			$game->users()->updatePivot('notes',$_POST['le']);
+			$user = Auth::user();
+			$game_user = $game->users->find($user->id);
+			$game_user->pivot->notes = $_POST[Input::get('notes')];
+			$game_user->pivot->save();
 
 			return Redirect::action('GameController@getIndex')
 				->with('flash_message', 'Your changes have been saved.');
