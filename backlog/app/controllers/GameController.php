@@ -112,14 +112,15 @@ class GameController extends \BaseController {
 			// Update existing pivot here
 			$user = Auth::user();
 			$game_user = $game->users->find($user->id);
-			$game_user->pivot->notes = $_POST[Input::get('notes')];
+			$game->users->find($user->id)->pivot->notes = Input::get('notes');
 			$game_user->pivot->save();
 
 			return Redirect::action('GameController@getIndex')
 				->with('flash_message', 'Your changes have been saved.');
 		}
 		catch(exception $e) {
-			return Redirect::to('/game')->with('flash_message', 'Error saving changes');
+			Debugbar::addException($e);
+			return Redirect::to('/game')->with('flash_message', 'Error saving changes. Your error message is: '.$e);
 		}
 
 	}
